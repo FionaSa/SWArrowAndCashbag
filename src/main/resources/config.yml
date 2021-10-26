@@ -1,0 +1,12 @@
+heads:
+  permission_needed: "hallo.2021.1"
+  final_message_to_player: ""
+  commands:
+    - "lp user truc"
+    - "machin"
+arrows:
+  commands:
+    - "lp user truc"
+    - "machin"
+  permission_needed: "hallo.2021.1"
+  final_message_to_player: ""

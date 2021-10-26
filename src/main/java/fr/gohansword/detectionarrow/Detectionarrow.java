@@ -1,6 +1,7 @@
 package fr.gohansword.detectionarrow;
 
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.Configuration;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,6 +13,7 @@ public final class Detectionarrow extends JavaPlugin {
         return instance;
     }
 
+    public Configuration config;
 
 
     public void onEnable() {
@@ -20,7 +22,10 @@ public final class Detectionarrow extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ClickEvent(), this);
         String newLine = System.getProperty("line.separator");
         Bukkit.getConsoleSender().sendMessage("   §a________" + newLine + "                   §a| | -- | |" + newLine + "                   §a| |-DA-| |" + newLine + "                   §a| |-->-| |     §8§l[§b§lDetectionArrow§8§l] §8>> §aLoaded successfully ! V 1.0.0 :)" + newLine + "                   §a| |-DA-| |" + newLine + "                   §a| | -- | |" + newLine + "                 §a§m--------------§r");
+        saveDefaultConfig();
 
+        Utils.loadArrows();
+        Utils.loadHeads();
     }
 
     public void onDisable() {
