@@ -19,28 +19,37 @@ public class ProjectileLaunchEvent implements Listener {
     public void arrowEvent(ProjectileHitEvent event) {
         if (event.getEntity() instanceof Arrow) {
             Arrow arrow = (Arrow) event.getEntity();
-            Player player = (Player) arrow.getShooter();
-            String name = player.getName();
-            if (!(player instanceof Player)) {
+            Player player;
+            try{
+                 player = (Player) arrow.getShooter();
+            }catch (Exception e) {
                 return;
             }
 
-            for (fr.gohansword.detectionarrow.Arrow fleche : Utils.arrows) {
-                if (arrow.getLocation().getWorld() == fleche.loc.getWorld()) {
-                    if(arrow.getLocation().getBlockX()== fleche.loc.getBlockX()) {
-                        if(arrow.getLocation().getBlockY()== fleche.loc.getBlockY()) {
-                            if(arrow.getLocation().getBlockZ()== fleche.loc.getBlockZ()) {
 
-                                if (player.hasPermission(Utils.arrow_permission)) {
+            String name = player.getName();
+
+
+            if (player.getWorld().getName().equalsIgnoreCase(Utils.world)) {
+                arrow.remove();
+                if (player.hasPermission(Utils.arrow_permission)) {
+
+                    for (fr.gohansword.detectionarrow.Arrow fleche : Utils.arrows) {
+                    if( (fleche.loc.getBlockX() -1 <= arrow.getLocation().getBlockX()) && (arrow.getLocation().getBlockX() <= fleche.loc.getBlockX() +1 ) ){
+                        if( (fleche.loc.getBlockY() -1 <= arrow.getLocation().getBlockY()) && (arrow.getLocation().getBlockY() <= fleche.loc.getBlockY() +1 ) ){
+                            if( (fleche.loc.getBlockZ() -1 <= arrow.getLocation().getBlockZ()) && (arrow.getLocation().getBlockZ() <= fleche.loc.getBlockZ() +1 ) ){
+
                                     for (String message : fleche.message_to_player) {
                                         player.sendMessage(message);
                                     }
-                                    arrow.remove();
+
                                     player.playNote(player.getLocation(), Instrument.CHIME, Note.natural(1, Note.Tone.A));
 
                                     for (String commande : fleche.commands) {
                                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), commande.replace("{name}", player.getName()));
                                     }
+                                    player.chat("/combienflechequete");
+                                return;
                                 }
                             }
                         }

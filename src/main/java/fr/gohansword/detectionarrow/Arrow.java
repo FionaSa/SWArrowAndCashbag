@@ -25,7 +25,7 @@ public class Arrow {
         FileConfiguration config = Utils.getArrow(name + ".yml");
         this.loc = new Location(Bukkit.getWorld(config.getString("location.world")), config.getDouble("location.x"), config.getDouble("location.y"), config.getDouble("location.z"), (float)config.getDouble("location.yaw"), (float)config.getDouble("location.pitch"));
         this.commands = config.getStringList("commands");
-        this.commands = config.getStringList("messages");
+        this.message_to_player = config.getStringList("messages");
 
     }
 

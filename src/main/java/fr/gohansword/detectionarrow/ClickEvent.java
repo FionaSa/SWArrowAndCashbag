@@ -17,9 +17,10 @@ public class ClickEvent implements Listener {
         Player player = event.getPlayer();
         String name = player.getName();
 
-        for (Head tete : Utils.heads) {
-            if (player.getWorld() == tete.loc.getWorld()) {
-                if (player.hasPermission(Utils.head_permission)) {
+        if (player.getWorld().getName().equalsIgnoreCase(Utils.world)) {
+            if (player.hasPermission(Utils.head_permission)) {
+
+            for (Head tete : Utils.heads) {
                     if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
                         if (event.getInteractionPoint().getBlockX() == tete.loc.getBlockX()) {
                             if (event.getInteractionPoint().getBlockY() == tete.loc.getBlockY()) {
@@ -31,6 +32,9 @@ public class ClickEvent implements Listener {
                                     for (String commande : tete.commands) {
                                         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), commande.replace("{name}", player.getName()));
                                     }
+
+                                    player.chat("/combienfriandisequete");
+                                    return;
                                 }
                             }
                         }

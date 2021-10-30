@@ -14,7 +14,7 @@ public final class Detectionarrow extends JavaPlugin {
     }
 
     public Configuration config;
-
+   // public Playerdata playerdata = new Playerdata();
 
     public void onEnable() {
         instance = this;
@@ -23,6 +23,7 @@ public final class Detectionarrow extends JavaPlugin {
         String newLine = System.getProperty("line.separator");
         Bukkit.getConsoleSender().sendMessage("   §a________" + newLine + "                   §a| | -- | |" + newLine + "                   §a| |-DA-| |" + newLine + "                   §a| |-->-| |     §8§l[§b§lDetectionArrow§8§l] §8>> §aLoaded successfully ! V 1.0.0 :)" + newLine + "                   §a| |-DA-| |" + newLine + "                   §a| | -- | |" + newLine + "                 §a§m--------------§r");
         saveDefaultConfig();
+        //this.playerdata.createplayerConfig();
 
         Utils.loadArrows();
         Utils.loadHeads();

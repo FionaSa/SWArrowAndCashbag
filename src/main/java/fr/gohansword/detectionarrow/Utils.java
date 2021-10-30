@@ -18,6 +18,7 @@ public class Utils {
     public static List<String> head_final_command ;
     public static  String head_permission = "";
     public static  String head_final_message = "";
+    public static  String world = "";
     private static Detectionarrow instance = Detectionarrow.getInstance();
 
 
@@ -37,6 +38,7 @@ public class Utils {
         head_final_command = Detectionarrow.getInstance().getConfig().getStringList("heads.commands");
         head_permission = Detectionarrow.getInstance().getConfig().getString("heads.permission_needed");
         head_final_message =  Detectionarrow.getInstance().getConfig().getString("heads.final_message_to_player");
+        world = Detectionarrow.getInstance().getConfig().getString("heads.world");
 
     }
 
@@ -58,6 +60,8 @@ public class Utils {
             return;
         for (File file : (File[]) Objects.<File[]>requireNonNull(folder.listFiles())) {
             if (!file.isDirectory() || file.getName().contains(".yml")) {
+                System.out.println(file.getName());
+
                 arrows.add(Arrow.getArrow(file.getName().replace(".yml", "")));
                 arrowcount++;
             }
